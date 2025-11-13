@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>研發一組部會週報</title>
+    <!-- 載入 Tailwind CSS --><script src="https://cdn.tailwindcss.com"></script>
+    <!-- 載入 Font Awesome --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        /* 用於平滑過渡 */
+        .tab-content {
+            transition: opacity 0.3s ease-in-out;
+        }
+        /* 側邊欄高亮樣式 */
+        .sidebar-link.active {
+            background-color: #e0f2fe; /* light-blue-100 */
+            color: #0c4a6e; /* cyan-800 */
+            border-right: 44px solid #0ea5e9; /* sky-500 */
+        }
+        /* 手風琴圖示旋轉 */
+        .accordion-trigger.open .accordion-icon {
+            transform: rotate(180deg);
+        }
+        .accordion-icon {
+            transition: transform 0.3s ease;
+        }
+        .accordion-content {
+            transition: max-height 0.3s ease-out, padding 0.3s ease-out;
+            max-height: 0;
+            overflow: hidden;
+        }
+        .accordion-content.open {
+            max-height: 2000px; /* 設置一個足夠大的值 */
+            padding-top: 1rem; /* 16px */
+            padding-bottom: 1rem; /* 16px */
+        }
+    </style>
+</head>
+<body class="bg-gray-100 font-sans antialiased">
+
+    <div class="flex h-screen">
+        <!-- 固定側邊導覽列 --><aside class="w-64 bg-white shadow-md flex flex-col fixed top-0 left-0 h-full z-10">
+            <nav class="mt-4 flex-1">
+                <ul class="space-y-2 px-4">
+                    <li>
+                        <a href="#" class="sidebar-link flex items-center p-3 text-lg text-gray-700 rounded-lg hover:bg-gray-100" data-tab="tab1">
+                            <i class="fas fa-fw fa-tachometer-alt w-8 text-center text-gray-500"></i>
+                            <span class="ml-3">本週重點概覽</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="sidebar-link flex items-center p-3 text-lg text-gray-700 rounded-lg hover:bg-gray-100" data-tab="tab2">
+                            <i class="fas fa-fw fa-tasks w-8 text-center text-gray-500"></i>
+                            <span class="ml-3">專案進度</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="sidebar-link flex items-center p-3 text-lg text-gray-700 rounded-lg hover:bg-gray-100" data-tab="tab3">
+                            <i class="fas fa-fw fa-cogs w-8 text-center text-gray-500"></i>
+                            <span class="ml-3">C++ → Go</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="sidebar-link flex items-center p-3 text-lg text-gray-700 rounded-lg hover:bg-gray-100" data-tab="tab4">
+                            <i class="fas fa-fw fa-gamepad w-8 text-center text-gray-500"></i>
+                            <span class="ml-3">ATG-戰神賽特2</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- 主內容區域 (向右偏移以避免被側邊欄遮擋) --><main class="flex-1 p-8 md:p-12 ml-64 overflow-y-auto">
+            <!-- 頁首標題 --><header class="mb-10 pb-6 border-b border-gray-300">
+                <div class="flex items-center space-x-4">
+                    <img src="https://i.meee.com.tw/H1aVEZF.png" alt="" class="w-48 h-24 object-contain">
+                    <h1 class="text-4xl font-bold text-gray-800">研發一組部會週報</h1>
+                </div>
+                <p class="text-xl text-gray-500 mt-2">日期：11/14 | 主講人：羅丞宏</p>
+            </header>
+
+            <!-- 內容區塊 --><div>
+                <!-- 頁籤 1: 本週重點概覽 --><section id="tab1" class="tab-content">
+                    <div class="flex items-center space-x-3 mb-6">
+                        <i class="fas fa-tachometer-alt text-2xl text-blue-600"></i>
+                        <h2 class="text-3xl font-bold text-gray-800">本週重點概覽</h2>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <!-- 吉莉卡蛙 --><div class="bg-blue-50 border border-blue-200 rounded-lg p-6 shadow-sm">
+                            <h3 class="text-2xl font-semibold text-blue-800">吉莉卡蛙 (90%)</h3>
+                            <p class="text-xl font-medium text-gray-600 mt-1">上線日期：11/26 (三)</p>
+                            <div class="w-full bg-gray-200 rounded-full h-4 mt-3">
+                                <div class="bg-blue-600 h-4 rounded-full" style="width: 90%"></div>
+                            </div>
+                        </div>
+                        <!-- 英雄羅賓漢 --><div class="bg-green-50 border border-green-200 rounded-lg p-6 shadow-sm">
+                            <h3 class="text-2xl font-semibold text-green-800">英雄羅賓漢 (5%)</h3>
+                            <p class="text-xl font-medium text-gray-600 mt-1">上線日期：1/14 (三)</p>
+                            <div class="w-full bg-gray-200 rounded-full h-4 mt-3">
+                                <div class="bg-green-600 h-4 rounded-full" style="width: 5%"></div>
+                            </div>
+                        </div>
+                        <!-- 三英無雙999 --><div class="bg-red-50 border border-red-200 rounded-lg p-6 shadow-sm">
+                            <h3 class="text-2xl font-semibold text-red-800">三英無雙999 (5%)</h3>
+                            <p class="text-xl font-medium text-gray-600 mt-1">上線日期：5/20 (三)</p>
+                            <div class="w-full bg-gray-200 rounded-full h-4 mt-3">
+                                <div class="bg-red-600 h-4 rounded-full" style="width: 5%"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 前往專案進度按鈕 --><div class="mt-10 text-center">
+                        <button id="view-projects-btn" class="bg-blue-600 text-white text-lg font-medium py-3 px-6 rounded-lg shadow-md hover:bg-blue-700 transition-colors">
+                            查看專案詳細進度
+                        </button>
+                    </div>
+                </section>
+
+                <!-- 頁籤 2: 專案進度 --><section id="tab2" class="tab-content hidden">
+                    <div class="flex items-center space-x-3 mb-6">
+                        <i class="fas fa-tasks text-2xl text-green-600"></i>
+                        <h2 class="text-3xl font-bold text-gray-800">專案進度</h2>
+                    </div>
+                    
+                    <!-- 可展開的區塊容器 --><div class="space-y-4">
+                        <!-- 吉莉卡蛙 Accordion --><div class="bg-white border border-gray-200 rounded-lg shadow-sm overflow-hidden">
+                            <!-- 可點擊的標頭 --><div class="accordion-trigger flex justify-between items-center p-6 cursor-pointer hover:bg-gray-50">
+                                <div>
+                                    <h3 class="text-2xl font-semibold text-blue-700">吉莉卡蛙 (90%)</h3>
+                                    <span class="text-xl font-medium text-gray-600">上線日期：11/26</span>
+                                </div>
+                                <i class="fa-solid fa-chevron-down accordion-icon text-gray-500"></i>
+                            </div>
+                            <!-- 要收合的內容 --><div class="accordion-content px-6 pb-6 border-t border-gray-200">
+                                
+                                <!-- 嵌入式影片 --><div class="w-full max-w-2xl mx-auto my-4 rounded-lg overflow-hidden shadow-md aspect-video">
+                                    <iframe 
+                                        class="w-full h-full"
+                                        src="https://www.youtube.com/embed/YeqJzRlAD18" 
+                                        title="吉莉卡蛙一組週報用影片" 
+                                        frameborder="0" 
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                                        referrerpolicy="strict-origin-when-cross-origin" 
+                                        allowfullscreen>
+                                    </iframe>
+                                </div>
+
+                                <h4 class="text-xl font-semibold text-gray-700 mb-2 mt-4">本週工作項目：</h4>
+                                <ul class="list-disc list-inside space-y-2 text-xl text-gray-700">
+                                    <li><strong class="font-medium text-gray-800">編導：</strong>撰寫品檢規格文件、客服查詢工具規格書</li>
+                                    <li><strong class="font-medium text-gray-800">Client：</strong>音樂音效串接、優化相關演出</li>
+                                    <li><strong class="font-medium text-gray-800">Server：</strong>協助相關問題修正</li>
+                                    <li><strong class="font-medium text-gray-800">機率：</strong>輪帶保護機制ABtest 4組高低輪帶調整、建置vscode數據模擬環境</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- 英雄羅賓漢 Accordion --><div class="bg-white border border-gray-200 rounded-lg shadow-sm overflow-hidden">
+                            <div class="accordion-trigger flex justify-between items-center p-6 cursor-pointer hover:bg-gray-50">
+                                <div>
+                                    <h3 class="text-2xl font-semibold text-green-700">英雄羅賓漢 (5%)</h3>
+                                    <span class="text-xl font-medium text-gray-600">上線日期：1/14</span>
+                                </div>
+                                <i class="fa-solid fa-chevron-down accordion-icon text-gray-500"></i>
+                            </div>
+                            <div class="accordion-content px-6 pb-6 border-t border-gray-200">
+                                <!-- 插入圖片 - 改為垂直顯示 -->
+                                <div class="w-full max-w-3xl mx-auto my-4 grid grid-cols-1 gap-4">
+                                    <div class="rounded-lg overflow-hidden shadow-md">
+                                        <img src="https://i.meee.com.tw/DRUhPIT.jpg" alt="英雄羅賓漢專案圖片1" class="w-full h-auto">
+                                    </div>
+                                    <div class="rounded-lg overflow-hidden shadow-md">
+                                        <img src="https://i.meee.com.tw/adnMSNs.jpg" alt="英雄羅賓漢專案圖片2" class="w-full h-auto">
+                                    </div>
+                                </div>
+
+                                <h4 class="text-xl font-semibold text-gray-700 mb-2 mt-4">本週工作項目：</h4>
+                                <ul class="list-disc list-inside space-y-2 text-xl text-gray-700">
+                                    <li>確認MG回檔畫面</li>
+                                    <li>討論FG射箭表演流程</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- 三英無雙999 Accordion --><div class="bg-white border border-gray-200 rounded-lg shadow-sm overflow-hidden">
+                            <div class="accordion-trigger flex justify-between items-center p-6 cursor-pointer hover:bg-gray-50">
+                                <div>
+                                    <h3 class="text-2xl font-semibold text-red-700">三英無雙999 (5%)</h3>
+                                    <span class="text-xl font-medium text-gray-600">上線日期：5/20</span>
+                                </div>
+                                <i class="fa-solid fa-chevron-down accordion-icon text-gray-500"></i>
+                            </div>
+                            <div class="accordion-content px-6 pb-6 border-t border-gray-200">
+                                <!-- 插入圖片 -->
+                                <div class="w-full max-w-3xl mx-auto my-4 rounded-lg overflow-hidden shadow-md">
+                                    <img src="https://i.meee.com.tw/kgGfKM3.png" alt="三英無雙999專案圖片" class="w-full h-auto">
+                                </div>
+                                
+                                <h4 class="text-xl font-semibold text-gray-700 mb-2 mt-4">本週工作項目：</h4>
+                                <ul class="list-disc list-inside space-y-2 text-xl text-gray-700">
+                                    <li>確認風格設定</li>
+                                    <li>主場畫面拼板中</li>
+                                    <li>特色玩法討論</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 頁籤 3: C++ → Go --><section id="tab3" class="tab-content hidden">
+                    <div class="flex items-center space-x-3 mb-6">
+                        <i class="fas fa-cogs text-2xl text-purple-600"></i>
+                        <h2 class="text-3xl font-bold text-gray-800">C++ → Go (進度 20%)</h2>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <!-- 左側：工作目標與進度 -->
+                        <div class="bg-white border border-gray-200 rounded-lg p-6 shadow-sm">
+                            <h3 class="text-2xl font-semibold text-purple-700 mb-3">工作目標</h3>
+                            <p class="text-xl text-gray-700 mb-6">
+                                將「極速發發發」專案架構轉換為「MTG」架構，以便未來整合至 MTG 機制中。
+                            </p>
+                            
+                            <h3 class="text-2xl font-semibold text-purple-700 mb-3">本週進度 (完成項目)</h3>
+                            <ul class="list-disc list-inside space-y-2 text-xl text-gray-700">
+                                <li>完成主遊戲邏輯搬移至 MTG 架構。</li>
+                                <li>完成 UserValue 與 SingleRound 模組的 log 實作與測試。</li>
+                                <li>優化資料流程，確保遊戲邏輯與玩家數值處理符合 MTG 架構規範。</li>
+                            </ul>
+                        </div>
+
+                        <!-- 右側：CheckPoint 表格 -->
+                        <div class="bg-white border border-gray-200 rounded-lg p-6 shadow-sm">
+                            <h3 class="text-2xl font-semibold text-purple-700 mb-4">CheckPoint</h3>
+                            <div class="overflow-x-auto rounded-lg border border-gray-200">
+                                <table class="w-full text-xl text-left text-gray-700">
+                                    <thead class="bg-gray-50 text-xl text-gray-800 uppercase">
+                                        <tr>
+                                            <th scope="col" class="px-6 py-3 font-semibold">日期</th>
+                                            <th scope="col" class="px-6 py-3 font-semibold">目標進度</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="divide-y divide-gray-200">
+                                        <tr class="hover:bg-gray-50">
+                                            <td class="px-6 py-4">11月6日</td>
+                                            <td class="px-6 py-4">10%</td>
+                                        </tr>
+                                        <!-- 高亮目前進度 -->
+                                        <tr class="bg-blue-50 font-semibold text-blue-800 hover:bg-blue-100">
+                                            <td class="px-6 py-4">11月13日</td>
+                                            <td class="px-6 py-4">20% (目前)</td>
+                                        </tr>
+                                        <tr class="hover:bg-gray-50">
+                                            <td class="px-6 py-4">11月20日</td>
+                                            <td class="px-6 py-4">30%</td>
+                                        </tr>
+                                        <tr class="hover:bg-gray-50">
+                                            <td class="px-6 py-4">11月27日</td>
+                                            <td class="px-6 py-4">40%</td>
+                                        </tr>
+                                        <tr class="hover:bg-gray-50">
+                                            <td class="px-6 py-4">12月4日</td>
+                                            <td class="px-6 py-4">55%</td>
+                                        </tr>
+                                        <tr class="hover:bg-gray-50">
+                                            <td class="px-6 py-4">12月11日</td>
+                                            <td class="px-6 py-4">65%</td>
+                                        </tr>
+                                        <tr class="hover:bg-gray-50">
+                                            <td class="px-6 py-4">12月18日</td>
+                                            <td class="px-6 py-4">75%</td>
+                                        </tr>
+                                        <tr class="hover:bg-gray-50">
+                                            <td class="px-6 py-4">12月25日</td>
+                                            <td class="px-6 py-4">90%</td>
+                                        </tr>
+                                        <tr class="hover:bg-gray-50">
+                                            <td class="px-6 py-4">12月31日</td>
+                                            <td class="px-6 py-4">100%</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 頁籤 4: ATG-戰神賽特2 --><section id="tab4" class="tab-content hidden">
+                    <div class="flex items-center space-x-3 mb-6">
+                        <i class="fas fa-gamepad text-2xl text-yellow-600"></i>
+                        <h2 class="text-3xl font-bold text-gray-800">ATG-戰神賽特2：新增覺醒之力 (Super FG)</h2>
+                    </div>
+                    <div class="bg-white border border-gray-200 rounded-lg p-6 shadow-sm">
+                        
+                        <!-- 新增的小標題 -->
+                        <h3 class="text-2xl font-semibold text-gray-800 mb-3">新增 Super FG</h3>
+                        
+                        <p class="text-xl text-gray-700 mb-4">
+                            獲得4~6個SCATTER中包含 **覺醒之力SCATTER** 即可進入Super FG。
+                        </p>
+                        <p class="text-xl text-gray-700 mb-6">
+                            Super FG中新增兩種特殊 symbol：<strong class="text-yellow-700">力量覺醒符號</strong>、<strong class="text-yellow-700">鎖定覺醒符號</strong>。
+                        </p>
+
+                        <!-- 插入戰神賽特2影片 -->
+                        <div class="w-full max-w-2xl mx-auto my-6 rounded-lg overflow-hidden shadow-md aspect-video">
+                            <iframe 
+                                class="w-full h-full" 
+                                src="https://www.youtube.com/embed/1ypFys27DEQ" 
+                                title="戰神賽特2遊玩影片" 
+                                frameborder="0" 
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                                referrerpolicy="strict-origin-when-cross-origin" 
+                                allowfullscreen>
+                            </iframe>
+                        </div>
+
+                        <div class="space-y-4 mt-6">
+                            <div class="border-l-4 border-yellow-500 pl-4">
+                                <h4 class="text-xl font-semibold text-gray-800">力量覺醒符號</h4>
+                                <p class="text-xl text-gray-700">當盤面出現三個力量覺醒符號+倍數球時，觸發角色技能，將倍數球分裂為多個相同倍數球。</p>
+                            </div>
+                            <div class="border-l-4 border-yellow-500 pl-4">
+                                <h4 class="text-xl font-semibold text-gray-800">鎖定覺醒符號</h4>
+                                <p class="text-xl text-gray-700">當盤面出現三個鎖定覺醒符號+倍數球時，觸發角色技能，將倍數球分裂將鎖定盤面數回合。</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const links = document.querySelectorAll('.sidebar-link');
+            const tabs = document.querySelectorAll('.tab-content');
+            const viewProjectsBtn = document.getElementById('view-projects-btn');
+            const accordions = document.querySelectorAll('.accordion-trigger');
+
+            // 函數：切換頁籤
+            function switchTab(tabId) {
+                // 隱藏所有頁籤
+                tabs.forEach(tab => {
+                    tab.classList.add('hidden');
+                    tab.style.opacity = 0;
+                });
+                // 移除所有連結的高亮
+                links.forEach(link => {
+                    link.classList.remove('active');
+                });
+
+                // 顯示目標頁籤
+                const targetTab = document.getElementById(tabId);
+                if (targetTab) {
+                    targetTab.classList.remove('hidden');
+                    // 使用 setTimeout 確保 display: block 生效後再觸發透明度變化
+                    setTimeout(() => {
+                        targetTab.style.opacity = 1;
+                    }, 50);
+                }
+
+                // 高亮目標連結
+                const targetLink = document.querySelector(`.sidebar-link[data-tab="${tabId}"]`);
+                if (targetLink) {
+                    targetLink.classList.add('active');
+                }
+            }
+
+            // 側邊欄連結點擊事件
+            links.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const tabId = this.getAttribute('data-tab');
+                    switchTab(tabId);
+                });
+            });
+
+            // "查看專案詳細進度" 按鈕點擊事件
+            if (viewProjectsBtn) {
+                viewProjectsBtn.addEventListener('click', function() {
+                    switchTab('tab2');
+                });
+            }
+
+            // 手風琴 (Accordion) 點擊事件
+            accordions.forEach(trigger => {
+                trigger.addEventListener('click', function() {
+                    // 獲取內容元素
+                    const content = this.nextElementSibling;
+                    
+                    // 切換 open 狀態
+                    this.classList.toggle('open');
+                    content.classList.toggle('open');
+
+                    // 可選：關閉其他手風琴
+                    // accordions.forEach(otherTrigger => {
+                    //     if (otherTrigger !== this && otherTrigger.classList.contains('open')) {
+                    //         otherTrigger.classList.remove('open');
+                                        otherTrigger.nextElementSibling.classList.remove('open');
+                    //     }
+                    // });
+                });
+            });
+
+            // 預設顯示第一個頁籤
+            switchTab('tab1');
+        });
+    </script>
+
+</body>
+</html>
